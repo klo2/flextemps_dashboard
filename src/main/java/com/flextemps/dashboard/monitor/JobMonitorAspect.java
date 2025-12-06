@@ -6,7 +6,7 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.time.temporal.ChronoUnit;
 
 @Aspect
@@ -25,7 +25,7 @@ public class JobMonitorAspect {
                 .stepName(methodName)
                 .description(description)
                 .status("RUNNING")
-                .startTime(LocalDateTime.now())
+                .startTime(ZonedDateTime.now())
                 .build();
 
         jobStateService.addStep(state);
@@ -38,7 +38,7 @@ public class JobMonitorAspect {
             state.setStatus("FAILED");
             throw e;
         } finally {
-            state.setEndTime(LocalDateTime.now());
+            state.setEndTime(ZonedDateTime.now());
             state.setDurationMs(ChronoUnit.MILLIS.between(state.getStartTime(), state.getEndTime()));
             jobStateService.updateStep(state);
         }

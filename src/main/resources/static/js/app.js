@@ -90,7 +90,13 @@ function getStatusColorVar(status) {
 
 function formatTime(isoString) {
     const d = new Date(isoString);
-    return d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    return d.toLocaleTimeString('fr-FR', {
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        timeZone: 'Europe/Paris',
+        timeZoneName: 'short'
+    });
 }
 
 function formatDuration(ms) {

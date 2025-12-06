@@ -25,6 +25,8 @@ public class StatusWebSocketHandler extends TextWebSocketHandler {
         this.jobStateService = jobStateService;
         this.objectMapper = new ObjectMapper();
         this.objectMapper.registerModule(new JavaTimeModule());
+        this.objectMapper.configure(com.fasterxml.jackson.databind.SerializationFeature.WRITE_DATES_AS_TIMESTAMPS,
+                false);
     }
 
     @PostConstruct
