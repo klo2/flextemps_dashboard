@@ -16,7 +16,7 @@ public class JobScheduler {
 
     // Run every 30 minutes, but also run after a short initial delay for demo
     // purposes
-    @Scheduled(fixedRate = 1800000, initialDelay = 5000)
+    @Scheduled(fixedRate = 30000, initialDelay = 5000)
     public void runScheduledJob() {
         log.info("Starting scheduled job...");
         jobStateService.clear();
